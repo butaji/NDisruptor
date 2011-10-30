@@ -5,12 +5,10 @@ namespace NDisruptor
     internal class AtomicLongArray
     {
         private long[] _value;
-        private Action<int, long> _lazySet;
 
         public AtomicLongArray(int bufferSize)
         {
             _value = new long[bufferSize];
-            _lazySet = set;
         }
 
         public int length()
@@ -20,7 +18,7 @@ namespace NDisruptor
 
         public void lazySet(int i, long initialCursorValue)
         {
-            _lazySet.BeginInvoke(i, initialCursorValue, lazySetCallBack, this);
+            set(i, initialCursorValue);
         }
 
         private void lazySetCallBack(IAsyncResult ar)
