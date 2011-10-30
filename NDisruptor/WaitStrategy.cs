@@ -4,11 +4,11 @@ namespace NDisruptor
     {
         public class Option
         {
-            public static Option  BLOCKING;
+            public static Option BLOCKING = new Option();
 
             public WaitStrategy newInstance()
             {
-                throw new System.NotImplementedException();
+                return new BlockingStrategy();
             }
         }
 
@@ -17,12 +17,14 @@ namespace NDisruptor
             throw new System.NotImplementedException();
         }
 
-        public long waitFor(long sequence, Sequence cursorSequence, Sequence[] dependentSequences, ProcessingSequenceBarrier processingSequenceBarrier)
+        public long waitFor(long sequence, Sequence cursorSequence, Sequence[] dependentSequences,
+                            ProcessingSequenceBarrier processingSequenceBarrier)
         {
             throw new System.NotImplementedException();
         }
 
-        public long waitFor(long sequence, Sequence cursorSequence, Sequence[] dependentSequences, ProcessingSequenceBarrier processingSequenceBarrier, long timeout, TimeUnit units)
+        public long waitFor(long sequence, Sequence cursorSequence, Sequence[] dependentSequences,
+                            ProcessingSequenceBarrier processingSequenceBarrier, long timeout, TimeUnit units)
         {
             throw new System.NotImplementedException();
         }

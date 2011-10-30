@@ -1,30 +1,42 @@
+using System;
+
 namespace NDisruptor
 {
     internal class AtomicLongArray
     {
+        private long[] _value;
+        private Action<int, long> _lazySet;
+
         public AtomicLongArray(int bufferSize)
         {
-            throw new System.NotImplementedException();
+            _value = new long[bufferSize];
+            _lazySet = set;
         }
 
         public int length()
         {
-            throw new System.NotImplementedException();
+            return _value.Length;
         }
 
         public void lazySet(int i, long initialCursorValue)
         {
-            throw new System.NotImplementedException();
+            _lazySet.BeginInvoke(i, initialCursorValue, lazySetCallBack, this);
+        }
+
+        private void lazySetCallBack(IAsyncResult ar)
+        {
+            if (!ar.IsCompleted)
+                throw new ArgumentException();
         }
 
         public void set(int i, long sequence)
         {
-            throw new System.NotImplementedException();
+            _value[i] = sequence;
         }
 
         public decimal get(int i)
         {
-            throw new System.NotImplementedException();
+            return _value[i];
         }
     }
 }

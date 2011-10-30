@@ -16,7 +16,7 @@ namespace NDisruptor.Tests
         [Test]
         public void shouldClaimAndGet()
         {
-            Assert.Equals(Sequencer.INITIAL_CURSOR_VALUE, ringBuffer.getCursor());
+            Assert.AreEqual(Sequencer.INITIAL_CURSOR_VALUE, ringBuffer.getCursor());
 
             //StubEvent expectedEvent = new StubEvent(2701);
 

@@ -1,11 +1,15 @@
+using System;
+
 namespace NDisruptor
 {
     public class AtomicLong
     {
+        private readonly Action<long> _lazySet;
         private long _value;
 
         protected AtomicLong(long value)
         {
+            _lazySet = v => set(value);
             _value = value;
         }
 
@@ -14,9 +18,9 @@ namespace NDisruptor
             return _value++;
         }
 
-        public void set(long cursor)
+        public long set(long cursor)
         {
-            _value = cursor;
+            return _value = cursor;
         }
 
         public long get()
@@ -34,9 +38,17 @@ namespace NDisruptor
             throw new System.NotImplementedException();
         }
 
+
         public void lazySet(long value)
         {
-            throw new System.NotImplementedException();
+            //misc.unsafe, inline_unsafe_ordered_store
+            _lazySet.BeginInvoke(value, lazySetCallback, this);
+        }
+
+        private void lazySetCallback(IAsyncResult ar)
+        {
+            if (!ar.IsCompleted)
+                throw new ArgumentException();
         }
     }
 }

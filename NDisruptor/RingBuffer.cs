@@ -35,7 +35,7 @@ namespace NDisruptor
 
         private int getBufferSize()
         {
-            throw new NotImplementedException();
+            return bufferSize;
         }
 
         public T get(long sequence)

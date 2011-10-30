@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlertException.cs" />
+    <Compile Include="BlockingStrategy.cs" />
     <Compile Include="util\AtomicBoolean.cs" />
     <Compile Include="util\AtomicLong.cs" />
     <Compile Include="util\AtomicLongArray.cs" />

@@ -6,7 +6,7 @@ namespace NDisruptor
  {
     public static readonly long INITIAL_CURSOR_VALUE = -1L;
 
-    private readonly int bufferSize;
+     protected readonly int bufferSize;
 
     private readonly Sequence cursor = new Sequence(INITIAL_CURSOR_VALUE);
     private Sequence[] gatingSequences;
