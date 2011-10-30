@@ -40,13 +40,48 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlertException.cs" />
+    <Compile Include="util\AtomicBoolean.cs" />
+    <Compile Include="util\AtomicLong.cs" />
+    <Compile Include="util\AtomicLongArray.cs" />
+    <Compile Include="util\AtomicReference.cs" />
+    <Compile Include="BatchDescriptor.cs" />
+    <Compile Include="BatchEventProcessor.cs" />
     <Compile Include="ClaimStrategy.cs" />
+    <Compile Include="EventHandler.cs" />
+    <Compile Include="EventProcessor.cs" />
+    <Compile Include="EventPublisher.cs" />
+    <Compile Include="EventTranslator.cs" />
+    <Compile Include="ExceptionHandler.cs" />
+    <Compile Include="Executor.cs" />
+    <Compile Include="FatalExceptionHandler.cs" />
+    <Compile Include="IllegalStateException.cs" />
+    <Compile Include="LifecycleAware.cs" />
+    <Compile Include="LockSupport.cs" />
+    <Compile Include="MultiThreadedStrategy.cs" />
+    <Compile Include="MutableLong.cs" />
+    <Compile Include="NoOpEventProcessor.cs" />
+    <Compile Include="OverridedThreadLocal.cs" />
+    <Compile Include="util\PaddedAtomicLong.cs" />
+    <Compile Include="util\PaddedLong.cs" />
+    <Compile Include="ProcessingSequenceBarrier.cs" />
     <Compile Include="RingBuffer.cs" />
     <Compile Include="EventFactory.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Runnable.cs" />
+    <Compile Include="Sequence.cs" />
+    <Compile Include="SequenceBarrier.cs" />
+    <Compile Include="SequenceGroup.cs" />
     <Compile Include="Sequencer.cs" />
+    <Compile Include="SequenceReportingEventHandler.cs" />
+    <Compile Include="TimeUnit.cs" />
+    <Compile Include="util\Util.cs" />
+    <Compile Include="util\MutableLong.cs" />
     <Compile Include="WaitStrategy.cs" />
+    <Compile Include="WorkerPool.cs" />
+    <Compile Include="WorkHandler.cs" />
+    <Compile Include="WorkProcessor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

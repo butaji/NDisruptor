@@ -3,7 +3,7 @@
 namespace NDisruptor
 {
 
-    public sealed class RingBuffer<T> : Sequencer<T>
+    public sealed class RingBuffer<T> : Sequencer
     {
         private readonly int indexMask;
         private readonly Object[] entries;
@@ -29,13 +29,6 @@ namespace NDisruptor
         private int getBufferSize()
         {
             throw new NotImplementedException();
-        }
-
-        public RingBuffer(EventFactory<T> eventFactory, int size) : 
-                        base(eventFactory, size,
-                 ClaimStrategy.Option.MULTI_THREADED,
-                 WaitStrategy.Option.BLOCKING)
-        {
         }
 
         public T get(long sequence)

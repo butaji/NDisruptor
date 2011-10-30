@@ -1,4 +1,6 @@
-﻿namespace NDisruptor
+﻿using System;
+
+namespace NDisruptor
 {
     public static class Extensions
     {
@@ -16,6 +18,11 @@
                 test >>= 1;
             }
             return count;
+        }
+
+        public static int NumberOfLeadingZeros(this int n)
+        {
+            throw new NotImplementedException();
         }
     }
 }

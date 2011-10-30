@@ -1,12 +1,7 @@
-using System;
-
 namespace NDisruptor
 {
-    public class EventFactory<T>
+    public interface EventFactory<T>
     {
-        public T newInstance()
-        {
-            throw new NotImplementedException();
-        }
+        T newInstance();
     }
 }
