@@ -2,7 +2,7 @@ using System;
 
 namespace NDisruptor.Tests
 {
-    internal class StubEvent
+    public class StubEvent
     {
         public static IEventFactory<StubEvent> EVENT_FACTORY = new StubEventFactory();
         private int _value;
