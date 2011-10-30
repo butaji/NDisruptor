@@ -6,3 +6,5 @@ _ReSharper*
 *.sln.docstates
 /NDisruptor.Tests/obj
 /NDisruptor.Tests/bin
+/NDisruptor/obj
+/NDisruptor/bin
