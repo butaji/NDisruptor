@@ -4,3 +4,5 @@ obj
 _ReSharper*
 *.user
 *.sln.docstates
+/NDisruptor.Tests/obj
+/NDisruptor.Tests/bin
