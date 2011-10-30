@@ -1,6 +1,6 @@
 namespace NDisruptor
 {
-    public class ProcessingSequenceBarrier : SequenceBarrier
+    public class ProcessingSequenceBarrier : ISequenceBarrier
 {
     private readonly WaitStrategy waitStrategy;
     private readonly Sequence cursorSequence;

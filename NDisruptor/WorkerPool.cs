@@ -10,9 +10,9 @@ public sealed class WorkerPool<T>
     private readonly WorkProcessor[] workProcessors;
 
     public WorkerPool(RingBuffer<T> ringBuffer,
-                      SequenceBarrier sequenceBarrier,
-                      ExceptionHandler exceptionHandler,
-                      params WorkHandler<T>[] workHandlers)
+                      ISequenceBarrier sequenceBarrier,
+                      IExceptionHandler exceptionHandler,
+                      params IWorkHandler<T>[] workHandlers)
     {
         this.ringBuffer = ringBuffer;
         int numWorkers = workHandlers.Length;
@@ -28,15 +28,15 @@ public sealed class WorkerPool<T>
         }
     }
 
-    public WorkerPool(EventFactory<T> eventFactory,
+    public WorkerPool(IEventFactory<T> eventFactory,
                       int size,
                       ClaimStrategy.Option claimStrategyOption,
                       WaitStrategy.Option waitStrategyOption,
-                      ExceptionHandler exceptionHandler,
-                      params WorkHandler<T>[] workHandlers)
+                      IExceptionHandler exceptionHandler,
+                      params IWorkHandler<T>[] workHandlers)
     {
         ringBuffer = new RingBuffer<T>(eventFactory, size, claimStrategyOption, waitStrategyOption);
-        SequenceBarrier barrier = ringBuffer.newBarrier();
+        ISequenceBarrier barrier = ringBuffer.newBarrier();
         int numWorkers = workHandlers.Length;
         workProcessors = new WorkProcessor[numWorkers];
 

@@ -8,7 +8,7 @@ namespace NDisruptor
         private readonly int indexMask;
         private readonly Object[] entries;
 
-        public RingBuffer(EventFactory<T> eventFactory,
+        public RingBuffer(IEventFactory<T> eventFactory,
                           int bufferSize,
                           ClaimStrategy.Option claimStrategyOption,
                           WaitStrategy.Option waitStrategyOption) :
@@ -26,7 +26,7 @@ namespace NDisruptor
             fill(eventFactory);
         }
 
-        public RingBuffer(EventFactory<T> eventFactory, int size)
+        public RingBuffer(IEventFactory<T> eventFactory, int size)
             : this(eventFactory, size,
                 ClaimStrategy.Option.MULTI_THREADED,
                 WaitStrategy.Option.BLOCKING)
@@ -43,7 +43,7 @@ namespace NDisruptor
             return (T)entries[(int)sequence & indexMask];
         }
 
-        private void fill(EventFactory<T> eventFactory)
+        private void fill(IEventFactory<T> eventFactory)
         {
             for (int i = 0; i < entries.Length; i++)
             {

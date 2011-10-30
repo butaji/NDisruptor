@@ -3,26 +3,26 @@
 namespace NDisruptor
 {
     public sealed class BatchEventProcessor<T>
-        : EventProcessor
+        : IEventProcessor
     {
         private AtomicBoolean running = new AtomicBoolean(false);
-        private ExceptionHandler exceptionHandler = new FatalExceptionHandler();
+        private IExceptionHandler exceptionHandler = new FatalExceptionHandler();
         private RingBuffer<T> ringBuffer;
-        private SequenceBarrier sequenceBarrier;
-        private NDisruptor.EventHandler<T> eventHandler;
+        private ISequenceBarrier sequenceBarrier;
+        private NDisruptor.IEventHandler<T> eventHandler;
         private readonly Sequence sequence = new Sequence(Sequencer.INITIAL_CURSOR_VALUE);
 
         public BatchEventProcessor(RingBuffer<T> ringBuffer,
-                                   SequenceBarrier sequenceBarrier,
-                                   EventHandler<T> eventHandler)
+                                   ISequenceBarrier sequenceBarrier,
+                                   IEventHandler<T> eventHandler)
         {
             this.ringBuffer = ringBuffer;
             this.sequenceBarrier = sequenceBarrier;
             this.eventHandler = eventHandler;
 
-            if (typeof (SequenceReportingEventHandler<T>).IsAssignableFrom(eventHandler.GetType()))
+            if (typeof (ISequenceReportingEventHandler<T>).IsAssignableFrom(eventHandler.GetType()))
             {
-                ((SequenceReportingEventHandler<T>) eventHandler).setSequenceCallback(sequence);
+                ((ISequenceReportingEventHandler<T>) eventHandler).setSequenceCallback(sequence);
             }
         }
 
@@ -37,7 +37,7 @@ namespace NDisruptor
             sequenceBarrier.alert();
         }
 
-        public void setExceptionHandler(ExceptionHandler exceptionHandler)
+        public void setExceptionHandler(IExceptionHandler exceptionHandler)
         {
             if (null == exceptionHandler)
             {
@@ -55,10 +55,10 @@ namespace NDisruptor
             }
             sequenceBarrier.clearAlert();
 
-            if (typeof(LifecycleAware).
+            if (typeof(ILifecycleAware).
             IsAssignableFrom(eventHandler.GetType()))
             {
-                ((LifecycleAware) eventHandler).onStart();
+                ((ILifecycleAware) eventHandler).onStart();
             }
 
             T @event = default(T);
@@ -97,9 +97,9 @@ namespace NDisruptor
                 }
             }
 
-            if (typeof(LifecycleAware).IsAssignableFrom(eventHandler.GetType()))
+            if (typeof(ILifecycleAware).IsAssignableFrom(eventHandler.GetType()))
             {
-                ((LifecycleAware) eventHandler).onShutdown();
+                ((ILifecycleAware) eventHandler).onShutdown();
             }
 
             running.set(false);

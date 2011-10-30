@@ -13,22 +13,6 @@ namespace NDisruptor
         {
             return p1 + p2 + p3 + p4 + p5 + p6;
         }
-
-        public bool compareAndSet(long l, long l1)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public long addAndGet(int delta)
-        {
-            throw new System.NotImplementedException();
-        }
-
-
-        public void lazySet(long value)
-        {
-            throw new System.NotImplementedException();
-        }
    
     }
 

@@ -1,6 +1,6 @@
 ﻿namespace NDisruptor
 {
-    public sealed class NoOpEventProcessor : EventProcessor
+    public sealed class NoOpEventProcessor : IEventProcessor
     {
         private readonly SequencerFollowingSequence sequence;
 

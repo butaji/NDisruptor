@@ -2,7 +2,7 @@ namespace NDisruptor.Tests
 {
     internal class StubEvent
     {
-        public static EventFactory<StubEvent> EVENT_FACTORY;
+        public static IEventFactory<StubEvent> EVENT_FACTORY;
 
         public StubEvent(int i)
         {

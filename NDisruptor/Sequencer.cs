@@ -28,7 +28,7 @@ namespace NDisruptor
         this.gatingSequences = sequences;
     }
 
-    public SequenceBarrier newBarrier(params Sequence[] sequencesToTrack)
+    public ISequenceBarrier newBarrier(params Sequence[] sequencesToTrack)
     {
         return new ProcessingSequenceBarrier(waitStrategy, cursor, sequencesToTrack);
     }

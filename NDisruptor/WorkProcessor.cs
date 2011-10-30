@@ -2,7 +2,7 @@ using System;
 
 namespace NDisruptor
 {
-    public class WorkProcessor : EventProcessor
+    public class WorkProcessor : IEventProcessor
     {
         public virtual Sequence getSequence()
         {
@@ -25,15 +25,15 @@ namespace NDisruptor
     private readonly AtomicBoolean running = new AtomicBoolean(false);
     private readonly  Sequence sequence = new Sequence(Sequencer.INITIAL_CURSOR_VALUE);
     private readonly  RingBuffer<T> ringBuffer;
-    private readonly  SequenceBarrier sequenceBarrier;
-    private readonly  WorkHandler<T> workHandler;
-    private readonly  ExceptionHandler exceptionHandler;
+    private readonly  ISequenceBarrier sequenceBarrier;
+    private readonly  IWorkHandler<T> workHandler;
+    private readonly  IExceptionHandler exceptionHandler;
     private readonly  AtomicLong workSequence;
 
     public WorkProcessor(RingBuffer<T> ringBuffer,
-                         SequenceBarrier sequenceBarrier,
-                         WorkHandler<T> workHandler,
-                         ExceptionHandler exceptionHandler,
+                         ISequenceBarrier sequenceBarrier,
+                         IWorkHandler<T> workHandler,
+                         IExceptionHandler exceptionHandler,
                          AtomicLong workSequence)
     {
         this.ringBuffer = ringBuffer;
@@ -62,9 +62,9 @@ namespace NDisruptor
         }
         sequenceBarrier.clearAlert();
 
-        if (typeof(LifecycleAware).IsAssignableFrom(workHandler.GetType()))
+        if (typeof(ILifecycleAware).IsAssignableFrom(workHandler.GetType()))
         {
-            ((LifecycleAware)workHandler).onStart();
+            ((ILifecycleAware)workHandler).onStart();
         }
 
         bool processedSequence = true;
@@ -101,9 +101,9 @@ namespace NDisruptor
             }
         }
 
-        if (typeof(LifecycleAware).IsAssignableFrom(workHandler.GetType()))
+        if (typeof(ILifecycleAware).IsAssignableFrom(workHandler.GetType()))
         {
-            ((LifecycleAware)workHandler).onShutdown();
+            ((ILifecycleAware)workHandler).onShutdown();
         }
 
         running.set(false);

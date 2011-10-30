@@ -20,7 +20,7 @@ namespace NDisruptor
         return minimum;
     }
 
-    public static Sequence[] getSequencesFor(params EventProcessor[] processors)
+    public static Sequence[] getSequencesFor(params IEventProcessor[] processors)
     {
         Sequence[] sequences = new Sequence[processors.Length];
         for (int i = 0; i < sequences.Length; i++)
