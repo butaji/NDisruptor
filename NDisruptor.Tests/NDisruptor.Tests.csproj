@@ -49,9 +49,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CyclicBarrier.cs" />
-    <Compile Include="Future.cs" />
-    <Compile Include="TestWaiter.cs" />
+    <Compile Include="EventPublisherTest.cs" />
+    <Compile Include="EventTranslatorTest.cs" />
+    <Compile Include="util\CountDownLatch.cs" />
+    <Compile Include="util\CyclicBarrier.cs" />
+    <Compile Include="util\Future.cs" />
+    <Compile Include="util\TestEventProcessor.cs" />
+    <Compile Include="util\TestWaiter.cs" />
     <Compile Include="util\DaemonThreadFactory.cs" />
     <Compile Include="util\Executors.cs" />
     <Compile Include="RingBufferTest.cs" />

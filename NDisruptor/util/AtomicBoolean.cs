@@ -7,9 +7,10 @@ namespace NDisruptor
     {
         int val;
 
-        public AtomicBoolean(bool b)
+        public AtomicBoolean(bool value)
         {
-            throw new NotImplementedException();
+            val = 0;
+            Thread.VolatileWrite(ref val, value ? 1 : 0);
         }
 
         public bool Value

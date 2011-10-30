@@ -9,7 +9,7 @@
             this.ringBuffer = ringBuffer;
         }
 
-        public void publishEvent(EventTranslator<E> translator)
+        public void publishEvent(IEventTranslator<E> translator)
         {
             long sequence = ringBuffer.next();
             try

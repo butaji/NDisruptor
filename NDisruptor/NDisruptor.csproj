@@ -52,7 +52,7 @@
     <Compile Include="IEventHandler.cs" />
     <Compile Include="IEventProcessor.cs" />
     <Compile Include="EventPublisher.cs" />
-    <Compile Include="EventTranslator.cs" />
+    <Compile Include="IEventTranslator.cs" />
     <Compile Include="IExceptionHandler.cs" />
     <Compile Include="Executor.cs" />
     <Compile Include="FatalExceptionHandler.cs" />
