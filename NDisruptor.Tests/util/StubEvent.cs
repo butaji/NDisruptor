@@ -1,3 +1,5 @@
+using System;
+
 namespace NDisruptor.Tests
 {
     internal class StubEvent
@@ -13,6 +15,26 @@ namespace NDisruptor.Tests
         public void copy(StubEvent expectedEvent)
         {
             _value = expectedEvent._value;
+        }
+
+        public bool Equals(StubEvent other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return other._value == _value;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != typeof (StubEvent)) return false;
+            return Equals((StubEvent) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return _value;
         }
     }
 
