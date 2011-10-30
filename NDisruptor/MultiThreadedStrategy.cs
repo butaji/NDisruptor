@@ -12,7 +12,7 @@ namespace NDisruptor
         private readonly PaddedAtomicLong claimSequence = new PaddedAtomicLong(Sequencer.INITIAL_CURSOR_VALUE);
         private readonly PaddedAtomicLong csLock = new PaddedAtomicLong(0L);
 
-        private readonly OverridedThreadLocal<MutableLong> minGatingSequenceThreadLocal = new OverridedThreadLocal<MutableLong>()
+        private readonly MutableLongThreadLocal minGatingSequenceThreadLocal = new MutableLongThreadLocal()
                                                                                               {
           
                                                                                               };
@@ -39,7 +39,7 @@ namespace NDisruptor
             long wrapPoint = (claimSequence.get() + 1L) - bufferSize;
             if (wrapPoint > minGatingSequence.get())
             {
-                long minSequence = getMinimumSequence(dependentSequences);
+                long minSequence = Util.getMinimumSequence(dependentSequences);
                 minGatingSequence.set(minSequence);
 
                 if (wrapPoint > minSequence)
@@ -128,7 +128,7 @@ namespace NDisruptor
         if (wrapPoint > minGatingSequence.get())
         {
             long minSequence;
-            while (wrapPoint > (minSequence = getMinimumSequence(dependentSequences)))
+            while (wrapPoint > (minSequence = Util.getMinimumSequence(dependentSequences)))
             {
                 LockSupport.parkNanos(1000L);
             }
@@ -143,7 +143,7 @@ namespace NDisruptor
         if (wrapPoint > minGatingSequence.get())
         {
             long minSequence;
-            while (wrapPoint > (minSequence = getMinimumSequence(dependentSequences)))
+            while (wrapPoint > (minSequence = Util.getMinimumSequence(dependentSequences)))
             {
                 LockSupport.parkNanos(1000L);
             }
@@ -152,9 +152,5 @@ namespace NDisruptor
         }
     }
 
-        private long getMinimumSequence(Sequence[] dependentSequences)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -1,3 +1,5 @@
+using System;
+
 namespace NDisruptor
 {
     public class ProcessingSequenceBarrier : ISequenceBarrier
@@ -23,11 +25,11 @@ namespace NDisruptor
         return waitStrategy.waitFor(sequence, cursorSequence, dependentSequences, this);
     }
 
-    public long waitFor(long sequence, long timeout, TimeUnit units)
+    public long waitFor(long sequence, TimeSpan timeout)
     {
         checkAlert();
 
-        return waitStrategy.waitFor(sequence, cursorSequence, dependentSequences, this, timeout, units);
+        return waitStrategy.waitFor(sequence, cursorSequence, dependentSequences, this, timeout);
     }
 
     public long getCursor()

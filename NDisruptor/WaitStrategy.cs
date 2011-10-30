@@ -1,6 +1,8 @@
+using System;
+
 namespace NDisruptor
 {
-    public class WaitStrategy
+    public abstract class WaitStrategy
     {
         public class Option
         {
@@ -12,21 +14,10 @@ namespace NDisruptor
             }
         }
 
-        public void signalAllWhenBlocking()
-        {
-            throw new System.NotImplementedException();
-        }
+        public abstract void signalAllWhenBlocking();
+        public abstract long waitFor(long sequence, Sequence cursor, Sequence[] dependents, ISequenceBarrier barrier);
 
-        public long waitFor(long sequence, Sequence cursorSequence, Sequence[] dependentSequences,
-                            ProcessingSequenceBarrier processingSequenceBarrier)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public long waitFor(long sequence, Sequence cursorSequence, Sequence[] dependentSequences,
-                            ProcessingSequenceBarrier processingSequenceBarrier, long timeout, TimeUnit units)
-        {
-            throw new System.NotImplementedException();
-        }
+        public abstract long waitFor(long sequence, Sequence cursor, Sequence[] dependents, ISequenceBarrier barrier,
+                                     TimeSpan timeout);
     }
 }

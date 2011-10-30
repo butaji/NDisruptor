@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 
 namespace NDisruptor
 {
@@ -28,9 +29,10 @@ namespace NDisruptor
             return _value;
         }
 
-        public bool compareAndSet(long l, long l1)
+        public bool compareAndSet(long expect, long update)
         {
-            throw new System.NotImplementedException();
+            var r = Interlocked.CompareExchange(ref _value, update, expect);
+            return _value == update;
         }
 
         public long addAndGet(int delta)

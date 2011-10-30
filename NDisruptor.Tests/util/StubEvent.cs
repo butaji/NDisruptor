@@ -12,7 +12,7 @@ namespace NDisruptor.Tests
 
         public void copy(StubEvent expectedEvent)
         {
-            throw new System.NotImplementedException();
+            _value = expectedEvent._value;
         }
     }
 

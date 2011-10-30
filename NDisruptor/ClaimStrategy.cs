@@ -56,7 +56,7 @@ namespace NDisruptor
             long wrapPoint = (claimSequence.get() + 1L) - bufferSize;
             if (wrapPoint > minGatingSequence.get())
             {
-                long minSequence = getMinimumSequence(dependentSequences);
+                long minSequence = Util.getMinimumSequence(dependentSequences);
                 minGatingSequence.set(minSequence);
 
                 if (wrapPoint > minSequence)
@@ -68,10 +68,6 @@ namespace NDisruptor
             return true;
         }
 
-        private long getMinimumSequence(Sequence[] sequences)
-        {
-            throw new System.NotImplementedException();
-        }
 
         public override long incrementAndGet(Sequence[] dependentSequences)
         {
@@ -108,7 +104,7 @@ namespace NDisruptor
             if (wrapPoint > minGatingSequence.get())
             {
                 long minSequence;
-                while (wrapPoint > (minSequence = getMinimumSequence(dependentSequences)))
+                while (wrapPoint > (minSequence = Util.getMinimumSequence(dependentSequences)))
                 {
                     LockSupport.parkNanos(1000L);
                 }

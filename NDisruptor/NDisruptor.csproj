@@ -61,7 +61,7 @@
     <Compile Include="LockSupport.cs" />
     <Compile Include="MultiThreadedStrategy.cs" />
     <Compile Include="NoOpEventProcessor.cs" />
-    <Compile Include="OverridedThreadLocal.cs" />
+    <Compile Include="MutableLongThreadLocal.cs" />
     <Compile Include="util\PaddedAtomicLong.cs" />
     <Compile Include="util\PaddedLong.cs" />
     <Compile Include="ProcessingSequenceBarrier.cs" />
@@ -75,7 +75,6 @@
     <Compile Include="SequenceGroup.cs" />
     <Compile Include="Sequencer.cs" />
     <Compile Include="ISequenceReportingEventHandler.cs" />
-    <Compile Include="TimeUnit.cs" />
     <Compile Include="util\Util.cs" />
     <Compile Include="util\MutableLong.cs" />
     <Compile Include="WaitStrategy.cs" />
