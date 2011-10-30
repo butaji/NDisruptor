@@ -26,6 +26,13 @@ namespace NDisruptor
             fill(eventFactory);
         }
 
+        public RingBuffer(EventFactory<T> eventFactory, int size)
+            : this(eventFactory, size,
+                ClaimStrategy.Option.MULTI_THREADED,
+                WaitStrategy.Option.BLOCKING)
+        {
+        }
+
         private int getBufferSize()
         {
             throw new NotImplementedException();

@@ -4,7 +4,7 @@ namespace NDisruptor
     {
         public class Option
         {
-            public static object MULTI_THREADED;
+            public static Option MULTI_THREADED;
 
             public ClaimStrategy newInstance(int bufferSize)
             {

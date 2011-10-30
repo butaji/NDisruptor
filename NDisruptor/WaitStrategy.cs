@@ -4,7 +4,7 @@ namespace NDisruptor
     {
         public class Option
         {
-            public static object BLOCKING;
+            public static Option  BLOCKING;
 
             public WaitStrategy newInstance()
             {

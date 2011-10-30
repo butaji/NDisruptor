@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NDisruptor", "NDisruptor.csproj", "{D02AC300-232E-4525-8703-2D098F7503C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NDisruptor.Tests", "..\NDisruptor.Tests\NDisruptor.Tests.csproj", "{798FD5A3-A2C0-4C35-8CE2-3E8B23F54E54}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{D02AC300-232E-4525-8703-2D098F7503C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D02AC300-232E-4525-8703-2D098F7503C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D02AC300-232E-4525-8703-2D098F7503C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{798FD5A3-A2C0-4C35-8CE2-3E8B23F54E54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{798FD5A3-A2C0-4C35-8CE2-3E8B23F54E54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{798FD5A3-A2C0-4C35-8CE2-3E8B23F54E54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{798FD5A3-A2C0-4C35-8CE2-3E8B23F54E54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
